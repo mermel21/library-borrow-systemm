@@ -461,3 +461,28 @@ def get_borrow_report(
     conn.close()
 
     return df
+# =========================
+# Admin / User
+# =========================
+def is_username_exists(username: str) -> bool:
+    conn = get_connection()
+    c = conn.cursor()
+
+    c.execute("SELECT 1 FROM users WHERE username = ?", (username,))
+    result = c.fetchone()
+
+    conn.close()
+    return result is not None
+
+
+def add_user(username: str, password_hash: str, role: str, is_active: int):
+    conn = get_connection()
+    c = conn.cursor()
+
+    c.execute("""
+        INSERT INTO users (username, password_hash, role, is_active)
+        VALUES (?, ?, ?, ?)
+    """, (username, password_hash, role, is_active))
+
+    conn.commit()
+    conn.close()
