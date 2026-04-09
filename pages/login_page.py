@@ -8,7 +8,7 @@ def render_login():
     # 👇 เพิ่มตรงนี้
     st.markdown("**รหัสนักศึกษา:** 6762509109")
     st.markdown("**ชื่อ:** จิตราภรณ์ ชินภักดี")
-    st.markdown("**หมู่เรียน:*ว.6707T* ")
+    st.markdown("หมู่เรียน:*ว.6707T* ")
     with st.form("login_form"):
         username = st.text_input(
             "ชื่อผู้ใช้",
